@@ -6,23 +6,24 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.CheckBox;
-import android.widget.ImageButton;
+import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import com.amazonaws.mobile.client.AWSMobileClient;
+import com.amazonaws.mobile.client.AWSStartupHandler;
+import com.amazonaws.mobile.client.AWSStartupResult;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
+
+    private TableLayout abbTable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,12 +41,37 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        TableLayout ll = (TableLayout) findViewById(R.id.abblist);
+        abbTable = (TableLayout) findViewById(R.id.abblist);
+    }
 
-        createRow(ll, "Pass", "ISEAD", join(", ", Arrays.asList("Security")));
-        createRow(ll, "ADM", "AMC1HH", join(", ", Arrays.asList("SQL")));
-        createRow(ll, "I & O", "IVZ2K", join(", ", Arrays.asList("Provider", "Big Data", "KI", "Kobol", "EKS", "Host", "DB2", "NoSQL")));
-        createRow(ll, "Demand", "ITSD", join(", ", Arrays.asList("Nachfrage")));
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        AWSMobileClient.getInstance().initialize(this, new AWSStartupHandler() {
+            @Override
+            public void onComplete(AWSStartupResult result) {
+                AWSConnector.downloadWithTransferUtility(getApplicationContext(), "Stelle.json", new AWSConnector.ResultHandler() {
+                    @Override
+                    public void onComplete(String json) {
+                        try {
+                            JSONArray places = new JSONArray(json);
+                            for (int c = 0; c < places.length(); c++) {
+                                Object obj = places.get(c);
+                                if (obj instanceof JSONObject) {
+                                    JSONObject place = (JSONObject) obj;
+                                    JSONArray tagsObj = place.getJSONArray("TAGS");
+                                    String tagsStr = join(", ", tagsObj);
+                                    createRow(abbTable, place.getString("BU"), place.getString("Gruppen-ID"), tagsStr);
+                                }
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+            }
+        }).execute();
     }
 
     private void createRow(TableLayout ll, String businessArea, String organizationUnit, String tags) {
@@ -58,10 +84,11 @@ public class MainActivity extends AppCompatActivity {
         ll.addView(row);
     }
 
-    private static String join(String delimiter, List<String> list) {
+    private static String join(String delimiter, JSONArray jsonArray) throws JSONException {
         StringBuilder sb = new StringBuilder();
         boolean first = true;
-        for (String str : list) {
+        for (int c = 0 ; c < jsonArray.length(); c++) {
+            String str = jsonArray.getString(c);
             if (!first) {
                 sb.append(delimiter);
             }
