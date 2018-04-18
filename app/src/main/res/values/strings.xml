@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">ABBlication</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_abblist">ABB Liste</string>
+    <string name="action_quiz">Azubi Quiz</string>
 </resources>

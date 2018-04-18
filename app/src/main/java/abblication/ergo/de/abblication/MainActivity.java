@@ -8,6 +8,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.CheckBox;
+import android.widget.ImageButton;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,6 +33,19 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        TableLayout ll = (TableLayout) findViewById(R.id.abblist);
+
+        TableRow row = new TableRow(this);
+        TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+        row.setLayoutParams(lp);
+        TextView col1 = new TextView(this);
+        col1.setText("test");
+        row.addView(col1);
+        TextView col2 = new TextView(this);
+        col2.setText("test");
+        row.addView(col2);
+        ll.addView(row, 0);
     }
 
     @Override
@@ -43,7 +63,9 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_abblist) {
+            return true;
+        } else if (id == R.id.action_quiz) {
             return true;
         }
 
