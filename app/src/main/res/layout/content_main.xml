@@ -13,16 +13,38 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <ScrollView
-        android:id="@+id/filterview"
-        android:layout_width="match_parent"
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/search_bar">
 
-        <TableLayout
-            android:id="@+id/abblist"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </ScrollView>
+        <TableRow android:layout_width="match_parent">
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_column="0"
+                android:layout_weight="1" />
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_column="1"
+                android:layout_weight="1" />
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_column="2"
+                android:layout_weight="1" />
+
+        </TableRow>
+
+        <ScrollView>
+
+            <TableLayout
+                android:id="@+id/abblist"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+        </ScrollView>
+
+    </TableLayout>
 
 </android.support.constraint.ConstraintLayout>

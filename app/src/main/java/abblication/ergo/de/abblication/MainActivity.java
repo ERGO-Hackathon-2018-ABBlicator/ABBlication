@@ -1,6 +1,7 @@
 package abblication.ergo.de.abblication;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,11 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,16 +42,41 @@ public class MainActivity extends AppCompatActivity {
 
         TableLayout ll = (TableLayout) findViewById(R.id.abblist);
 
+        createRow(ll, "Pass", "ISEAD", join(", ", Arrays.asList("Security")));
+        createRow(ll, "ADM", "AMC1HH", join(", ", Arrays.asList("SQL")));
+        createRow(ll, "I & O", "IVZ2K", join(", ", Arrays.asList("Provider", "Big Data", "KI", "Kobol", "EKS", "Host", "DB2", "NoSQL")));
+        createRow(ll, "Demand", "ITSD", join(", ", Arrays.asList("Nachfrage")));
+    }
+
+    private void createRow(TableLayout ll, String businessArea, String organizationUnit, String tags) {
         TableRow row = new TableRow(this);
         TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
         row.setLayoutParams(lp);
-        TextView col1 = new TextView(this);
-        col1.setText("test");
-        row.addView(col1);
+        row.addView(createTextCell(businessArea));
+        row.addView(createTextCell(organizationUnit));
+        row.addView(createTextCell(tags));
+        ll.addView(row);
+    }
+
+    private static String join(String delimiter, List<String> list) {
+        StringBuilder sb = new StringBuilder();
+        boolean first = true;
+        for (String str : list) {
+            if (!first) {
+                sb.append(delimiter);
+            }
+            sb.append(str);
+            first = false;
+        }
+        return sb.toString();
+    }
+
+    @NonNull
+    private TextView createTextCell(String label) {
         TextView col2 = new TextView(this);
-        col2.setText("test");
-        row.addView(col2);
-        ll.addView(row, 0);
+        col2.setText(label);
+        col2.setPadding(5, 5, 5, 5);
+        return col2;
     }
 
     @Override
