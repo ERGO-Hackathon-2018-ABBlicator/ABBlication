@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal">
+
+
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/left_table"
+        android:layout_marginLeft="40dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@android:color/darker_gray" />
+
+        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lower_table"
+            app:layout_constraintTop_toBottomOf="@id/imageView">
+
+            <TableRow android:layout_width="match_parent">
+
+                <TextView
+                    android:id="@+id/text_stationen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Stationen:" />
+
+            </TableRow>
+
+            <TableRow android:layout_width="match_parent">
+
+                <TextView
+                    android:id="@+id/text_station1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="--station1--"/>
+
+            </TableRow>
+
+            <TableRow android:layout_width="match_parent">
+
+                <TextView
+                    android:id="@+id/text_station2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="--station2--" />
+
+            </TableRow>
+
+            <TableRow android:layout_width="match_parent">
+
+                <TextView
+                    android:id="@+id/text_station3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="--station3--" />
+
+            </TableRow>
+
+            <TableRow android:layout_width="match_parent">
+
+                <TextView
+                    android:id="@+id/text_station4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="--station4--"/>
+
+            </TableRow>
+
+            <TableRow android:layout_width="match_parent">
+
+                <TextView
+                    android:id="@+id/text_station5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="--station5--" />
+
+            </TableRow>
+
+            <TableRow android:layout_width="match_parent">
+
+                <TextView
+                    android:id="@+id/text_station6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="--station6--" />
+
+            </TableRow>
+
+            <TableRow android:layout_width="match_parent">
+
+                <TextView
+                    android:id="@+id/text_station7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="--station7--" />
+
+            </TableRow>
+
+        </TableLayout>
+
+    </TableLayout>
+
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/right_table"
+        android:layout_marginRight="40dp">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name:" />
+
+        <TextView
+            android:id="@+id/name_"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="--name--"
+            app:layout_constraintTop_toBottomOf="@id/name"/>
+
+        <TextView
+            android:id="@+id/text_skills"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Skills:"
+            app:layout_constraintTop_toBottomOf="@id/name_"/>
+
+        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/ScrollView01"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            app:layout_constraintTop_toBottomOf="@id/text_skills">
+
+            <RelativeLayout
+                android:id="@+id/RelativeLayout01"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" >
+
+                <LinearLayout
+                    android:id="@+id/LinearLayout01"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/text_skill1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="--skill1--" />
+
+                    <TextView
+                        android:id="@+id/text_skill2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="--skill2--" />
+
+                    <TextView
+                        android:id="@+id/text_skill3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="--skill3--" />
+
+                    <TextView
+                        android:id="@+id/text_skill4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="--skill4--" />
+
+                    <TextView
+                        android:id="@+id/text_skill5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="--skill5--" />
+
+                    <TextView
+                        android:id="@+id/text_skill6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="--skill6--" />
+
+                    <TextView
+                        android:id="@+id/text_skill7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="--skill7--" />
+
+                    <TextView
+                        android:id="@+id/text_skill8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="--skill8--" />
+
+                    <TextView
+                        android:id="@+id/text_skill9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="--skill9--" />
+
+                    <TextView
+                        android:id="@+id/text_skill10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="--skill10--" />
+
+                    <TextView
+                        android:id="@+id/text_skill11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="--skill11--" />
+
+                    <TextView
+                        android:id="@+id/text_skill12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="--skill12--" />
+
+                    <TextView
+                        android:id="@+id/text_skill13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="--skill13--" />
+
+                    <TextView
+                        android:id="@+id/text_skill14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="--skill14--" />
+
+                    <TextView
+                        android:id="@+id/text_skill15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="--skill15--" />
+
+                </LinearLayout>
+            </RelativeLayout>
+
+        </ScrollView>
+
+    </TableLayout>
+
+</android.support.constraint.ConstraintLayout>
