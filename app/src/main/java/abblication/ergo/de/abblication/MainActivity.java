@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(String json) {
                         try {
+                            abbTable.removeAllViews();
                             JSONArray places = new JSONArray(json);
                             for (int c = 0; c < places.length(); c++) {
                                 Object obj = places.get(c);
