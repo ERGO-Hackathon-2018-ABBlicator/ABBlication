@@ -20,6 +20,7 @@ import com.amazonaws.mobile.client.AWSMobileClient;
 import com.amazonaws.mobile.client.AWSStartupHandler;
 import com.amazonaws.mobile.client.AWSStartupResult;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -170,19 +171,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         TextView txt = new TextView(this);
         txt.setText(label);
         txt.setPadding(5, 14, 5, 14);
-        txt.setTextSize(16);
+        txt.setTextSize(14);
         return txt;
     }
 
     private void populateMenus(ABBTableData data) {
-        for (String item : data.getBUs()) {
-            menuBU.getMenu().add(item);
+        updateMenu(menuBU.getMenu(), getString(R.string.placeholder_business_unit), data.getBUs(), false);
+        updateMenu(menuOU.getMenu(), getString(R.string.placeholder_organization_unit), data.getOUs(), false);
+        updateMenu(menuTags.getMenu(), getString(R.string.placeholder_tags), data.getTags(), true);
+    }
+
+    private void updateMenu(Menu menu, String placeholder, Collection<String> items, boolean checkable) {
+        menu.clear();
+        if (!checkable) {
+            menu.add(placeholder);
         }
-        for (String item : data.getOUs()) {
-            menuOU.getMenu().add(item);
-        }
-        for (String item : data.getTags()) {
-            menuTags.getMenu().add(item).setCheckable(true);
+        for (String item : items) {
+            menu.add(item).setCheckable(checkable);
         }
     }
 
@@ -228,8 +233,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         TextView organizationCell = (TextView) tableRow.getChildAt(1);
         String organizationName = organizationCell.getText().toString();
         Intent intent = new Intent(view.getContext(), AbbInfoActivity.class);
-        intent.putExtra("organizationUnit", organizationName);
-        // FIXME put more values
+        intent.putExtra("position", data.getPositionByOU(organizationName).toString());
         startActivity(intent);
     }
 

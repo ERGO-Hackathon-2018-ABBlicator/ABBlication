@@ -5,4 +5,10 @@
     <string name="placeholder_business_unit">GB</string>
     <string name="placeholder_organization_unit">OE</string>
     <string name="placeholder_tags">Tags</string>
+    <string name="action_logout">Logout</string>
+    <string name="action_ecampus">E-Campus</string>
+    <string name="hint_username">Benutzername</string>
+    <string name="hint_password">Passwort</string>
+    <string name="label_login">Login</string>
+    <string name="action_myprofile">Mein Profil</string>
 </resources>
