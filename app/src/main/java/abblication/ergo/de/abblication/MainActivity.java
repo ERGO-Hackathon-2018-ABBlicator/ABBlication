@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,7 +25,7 @@ import java.util.Set;
 import abblication.ergo.de.abblication.model.ABBRow;
 import abblication.ergo.de.abblication.model.ABBTableData;
 
-public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
+public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener, View.OnClickListener {
 
     private static final String POSITIONS_BUCKET_NAME = "Stelle.json";
 
@@ -95,6 +96,8 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         tableRow.addView(createTextCell(row.getBusinessUnit()));
         tableRow.addView(createTextCell(row.getOrganizationUnit()));
         tableRow.addView(createTextCell(row.getJoinedTags()));
+        tableRow.setClickable(true);
+        tableRow.setOnClickListener(this);
         ll.addView(tableRow);
     }
 
@@ -102,8 +105,8 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
     private TextView createTextCell(String label) {
         TextView txt = new TextView(this);
         txt.setText(label);
-        txt.setPadding(5, 5, 5, 5);
-        txt.setTextSize(24);
+        txt.setPadding(5, 10, 5, 10);
+        txt.setTextSize(20);
         return txt;
     }
 
@@ -178,6 +181,15 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
             }
         });
         return false;
+    }
+
+    @Override
+    public void onClick(View v) {
+        TableRow tableRow = (TableRow) v;
+        TextView organizationCell = (TextView) tableRow.getChildAt(1);
+        String organizationName = organizationCell.getText().toString();
+        // FIXME call DetailsActivity with organizationName
+        Log.i(this.getClass().getSimpleName(), "calling details for " + organizationName);
     }
 
 }
