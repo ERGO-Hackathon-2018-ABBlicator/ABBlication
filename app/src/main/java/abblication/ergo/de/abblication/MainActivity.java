@@ -56,6 +56,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 // FIXME call DetailsView to create new
             }
         });
+        // FIXME check permission and enable button
+        fab.setVisibility(View.INVISIBLE);
 
         searchBar = findViewById(R.id.search_bar);
 
