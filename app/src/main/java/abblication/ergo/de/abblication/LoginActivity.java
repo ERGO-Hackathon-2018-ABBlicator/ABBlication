@@ -74,10 +74,9 @@ public class LoginActivity extends AppCompatActivity {
                                                 sharedPref.edit().putString("username", username_gui).putString("password", password_gui).apply();
                                                 Intent Intent = new Intent(view.getContext(), MainActivity.class);
                                                 startActivity(Intent);
+                                                break;
                                             } else if (c == users.length() - 1) {
                                                 error.setText("Try again!");
-                                            } else {
-                                                continue;
                                             }
                                         }
                                     }

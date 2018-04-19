@@ -175,6 +175,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         TableRow tableRow = new TableRow(this);
         TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
         tableRow.setLayoutParams(lp);
+        tableRow.setPadding(10, 15, 10, 15);
         tableRow.addView(createTextCell(row.getBusinessUnit()));
         tableRow.addView(createTextCell(row.getOrganizationUnit()));
         tableRow.addView(createTextCell(row.getJoinedTags()));
@@ -187,7 +188,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView createTextCell(String label) {
         TextView txt = new TextView(this);
         txt.setText(label);
-        txt.setPadding(5, 14, 5, 14);
+        txt.setPadding(5, 5, 5, 5);
         txt.setTextSize(14);
         txt.setTextColor(Color.BLACK);
         return txt;
@@ -232,6 +233,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent intent_login = new Intent(this, ProfileActivity.class);
             startActivity(intent_login);
             return true;
+        } else if (id == R.id.action_logout) {
+            finish();
         }
 
         return super.onOptionsItemSelected(item);
