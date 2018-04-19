@@ -37,6 +37,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".AbbInfoActivity" />
+        <activity android:name=".ProfileActivity" />
     </application>
 
 </manifest>

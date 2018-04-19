@@ -1,5 +1,6 @@
 package abblication.ergo.de.abblication;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -225,6 +226,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else if (id == R.id.action_quiz) {
             return true;
         } else if (id == R.id.action_myprofile) {
+            Intent intent_login = new Intent(this, ProfileActivity.class);
+            startActivity(intent_login);
             return true;
         }
 
@@ -249,10 +252,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         TextView organizationCell = (TextView) tableRow.getChildAt(1);
         String organizationName = organizationCell.getText().toString();
         Intent intent = new Intent(view.getContext(), AbbInfoActivity.class);
-        Intent intent_login = new Intent(view.getContext(), LoginActivity.class);
         intent.putExtra("position", data.getPositionByOU(organizationName).toString());
         startActivity(intent);
-        startActivity(intent_login);
     }
 
 }

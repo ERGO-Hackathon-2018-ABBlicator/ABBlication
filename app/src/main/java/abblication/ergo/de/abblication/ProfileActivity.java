@@ -29,9 +29,9 @@ public class ProfileActivity extends AppCompatActivity {
 
     private int num_station = 7;
     private int num_skills = 5;
-    private String[] stations_db = new String [num_station];
+    private String[] stations_db = new String[num_station];
     private String[] skills_db = new String[num_skills];
-    private String[] stations_gui = new String [num_station];
+    private String[] stations_gui = new String[num_station];
     private String[] skills_gui = new String[num_skills];
 
     private List<String> result_skills;
@@ -39,9 +39,9 @@ public class ProfileActivity extends AppCompatActivity {
     private String result_firstname;
     private String result_name;
 
-    private int[] station_id = new int[]{R.id.text_station1,R.id.text_station2,R.id.text_station3,R.id.text_station4,
-                                         R.id.text_station5,R.id.text_station6,R.id.text_station7};
-    private int[] skill_id = new int[]{R.id.text_skill1,R.id.text_skill2,R.id.text_skill3,R.id.text_skill4,R.id.text_skill5};
+    private int[] station_id = new int[]{R.id.text_station1, R.id.text_station2, R.id.text_station3, R.id.text_station4,
+            R.id.text_station5, R.id.text_station6, R.id.text_station7};
+    private int[] skill_id = new int[]{R.id.text_skill1, R.id.text_skill2, R.id.text_skill3, R.id.text_skill4, R.id.text_skill5};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,12 +55,12 @@ public class ProfileActivity extends AppCompatActivity {
         // ImageView imageUser = findViewById(R.id.imageUser);
         // imageUser.setImageBitmap();
 
-        for(int i=0;i<num_station;++i){
+        for (int i = 0; i < num_station; ++i) {
             TextView text_station1 = findViewById(station_id[i]);
             text_station1.setText(result_stationen.get(i));
         }
 
-        for(int i=0;i<num_skills;++i){
+        for (int i = 0; i < num_skills; ++i) {
             TextView text_skill1 = findViewById(skill_id[i]);
             text_skill1.setText(result_skills.get(i));
         }
