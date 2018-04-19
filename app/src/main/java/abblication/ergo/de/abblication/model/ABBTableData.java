@@ -7,6 +7,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 public class ABBTableData {
 
@@ -20,7 +21,7 @@ public class ABBTableData {
         this.bucket = json;
     }
 
-    public List<ABBRow> getOverviewRows() {
+    public List<ABBRow> getFilteredRows(String s, String businessValue, String organizationUnit, Set<String> filterTags) {
         List<ABBRow> result = new ArrayList<>();
         try {
             JSONArray places = new JSONArray(bucket);

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -25,14 +26,17 @@ import java.util.Set;
 import abblication.ergo.de.abblication.model.ABBRow;
 import abblication.ergo.de.abblication.model.ABBTableData;
 
-public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener, View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String POSITIONS_BUCKET_NAME = "Stelle.json";
 
     private final Set<String> filterTags = new HashSet<>();
+    private SearchView searchBar;
     private TableLayout abbTable;
     private ABBTableData data = new ABBTableData("[]");
+    private Button buttonBU;
     private PopupMenu menuBU;
+    private Button buttonOU;
     private PopupMenu menuOU;
     private PopupMenu menuTags;
 
@@ -52,15 +56,56 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
             }
         });
 
+        searchBar = findViewById(R.id.search_bar);
+
         abbTable = findViewById(R.id.abblist);
 
-        Button buttonBU = findViewById(R.id.button_bu);
+        buttonBU = findViewById(R.id.button_bu);
         menuBU = new PopupMenu(this, buttonBU);
-        Button buttonOU = findViewById(R.id.button_ou);
+        menuBU.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                buttonBU.setText(item.getTitle());
+                return false;
+            }
+        });
+        buttonOU = findViewById(R.id.button_ou);
         menuOU = new PopupMenu(this, buttonOU);
+        menuOU.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                buttonOU.setText(item.getTitle());
+                return false;
+            }
+        });
         Button buttonTags = findViewById(R.id.button_tags);
         menuTags = new PopupMenu(this, buttonTags);
-        menuTags.setOnMenuItemClickListener(this);
+        menuTags.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                item.setChecked(!item.isChecked());
+                if (item.isChecked()) {
+                    filterTags.add(item.getTitle().toString());
+                } else {
+                    filterTags.remove(item.getTitle().toString());
+                }
+                item.setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
+                item.setActionView(new View(MainActivity.this));
+                item.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
+                    @Override
+                    public boolean onMenuItemActionExpand(MenuItem item) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onMenuItemActionCollapse(MenuItem item) {
+                        refreshTable();
+                        return false;
+                    }
+                });
+                return false;
+            }
+        });
     }
 
     @Override
@@ -84,9 +129,26 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
 
     private void refreshTable() {
         abbTable.removeAllViews();
-        for (ABBRow row : data.getOverviewRows()) {
-            // FIXME filter rows
+        for (ABBRow row : data.getFilteredRows(searchBar.getQuery().toString(), getBusinessValue(), getOrganizationUnit(), filterTags)) {
             createRow(abbTable, row);
+        }
+    }
+
+    private String getBusinessValue() {
+        String bu = buttonBU.getText().toString();
+        if (bu.equalsIgnoreCase(getString(R.string.placeholder_business_unit))) {
+            return null;
+        } else {
+            return bu;
+        }
+    }
+
+    private String getOrganizationUnit() {
+        String ou = buttonOU.getText().toString();
+        if (ou.equalsIgnoreCase(getString(R.string.placeholder_organization_unit))) {
+            return null;
+        } else {
+            return ou;
         }
     }
 
@@ -157,31 +219,6 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
 
     public void onClickTags(View view) {
         menuTags.show();
-    }
-
-    @Override
-    public boolean onMenuItemClick(MenuItem item) {
-        item.setChecked(!item.isChecked());
-        if (item.isChecked()) {
-            filterTags.add(item.getTitle().toString());
-        } else {
-            filterTags.remove(item.getTitle().toString());
-        }
-        item.setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
-        item.setActionView(new View(MainActivity.this));
-        item.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
-            @Override
-            public boolean onMenuItemActionExpand(MenuItem item) {
-                return false;
-            }
-
-            @Override
-            public boolean onMenuItemActionCollapse(MenuItem item) {
-                refreshTable();
-                return false;
-            }
-        });
-        return false;
     }
 
     @Override
