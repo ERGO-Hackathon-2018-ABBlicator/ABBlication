@@ -70,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
                                             username_db = user.getString("ID");
                                             password_db = user.getString("Passwort");
 
-                                            if (username_gui.equals(username_db) && password_gui.equals(password_db)) {
+                                            if (username_gui.equalsIgnoreCase(username_db) && password_gui.equals(password_db)) {
                                                 sharedPref.edit().putString("username", username_gui).putString("password", password_gui).apply();
                                                 Intent Intent = new Intent(view.getContext(), MainActivity.class);
                                                 startActivity(Intent);
