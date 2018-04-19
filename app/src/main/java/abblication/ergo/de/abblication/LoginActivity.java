@@ -17,7 +17,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Login extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     public Button login_button;
     public EditText username;
@@ -51,7 +51,7 @@ public class Login extends AppCompatActivity {
                 username_gui = String.valueOf(username.getText());
                 password_gui = String.valueOf(password.getText());
 
-                AWSMobileClient.getInstance().initialize(Login.this, new AWSStartupHandler() {
+                AWSMobileClient.getInstance().initialize(LoginActivity.this, new AWSStartupHandler() {
                     @Override
                     public void onComplete(AWSStartupResult result) {
                         AWSConnector.downloadWithTransferUtility(getApplicationContext(), "User.json", new AWSConnector.ResultHandler() {
