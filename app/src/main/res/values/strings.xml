@@ -5,4 +5,6 @@
     <string name="placeholder_business_unit">GB</string>
     <string name="placeholder_organization_unit">OE</string>
     <string name="placeholder_tags">Tags</string>
+    <string name="action_logout">Logout</string>
+    <string name="action_ecampus">E-Campus</string>
 </resources>
