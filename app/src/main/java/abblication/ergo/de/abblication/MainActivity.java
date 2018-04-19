@@ -58,6 +58,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         searchBar = findViewById(R.id.search_bar);
 
+        searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                refreshTable();
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                refreshTable();
+                return true;
+            }
+        });
+
         abbTable = findViewById(R.id.abblist);
 
         buttonBU = findViewById(R.id.button_bu);
