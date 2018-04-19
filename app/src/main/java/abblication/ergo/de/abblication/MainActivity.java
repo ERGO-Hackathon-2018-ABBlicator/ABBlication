@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         TextView txt = new TextView(this);
         txt.setText(label);
         txt.setPadding(5, 5, 5, 5);
-        txt.setTextSize(R.dimen.text_size);
+        txt.setTextSize(24);
         return txt;
     }
 
