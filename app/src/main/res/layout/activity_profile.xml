@@ -31,20 +31,20 @@
 
 
             <ImageView
-                android:id="@+id/image_group"
+                android:id="@+id/image_user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_span="2"
                 android:adjustViewBounds="true"
                 android:scaleType="fitStart"
-                android:padding="20"
+                android:padding="20dp"
                 android:src="@drawable/user" />
 
             <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/lower_table"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/imageUser">
+                app:layout_constraintTop_toBottomOf="@id/image_user">
 
                 <TableRow android:layout_width="match_parent">
 
