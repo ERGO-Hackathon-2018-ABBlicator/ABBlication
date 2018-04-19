@@ -24,7 +24,7 @@ public class AbbInfoActivity extends AppCompatActivity {
             fillText(jsonPosition, R.id.txtAufgabe, "Aufgabenbeschreibung");
             fillText(jsonPosition, R.id.txtStandort, "Standort");
             fillText(jsonPosition, R.id.txtABB, "ABB");
-            fillText(jsonPosition, R.id.txtAnspartner, "Ansprechpartner");
+            fillText(jsonPosition, R.id.txtAnsprechpartner, "Ansprechpartner");
         } catch (Exception e) {
             e.printStackTrace();
         }
