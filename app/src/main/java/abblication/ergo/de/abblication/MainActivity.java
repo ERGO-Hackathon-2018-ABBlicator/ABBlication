@@ -183,7 +183,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void updateMenu(Menu menu, String placeholder, Collection<String> items, boolean checkable) {
         menu.clear();
-        menu.add(placeholder);
+        if (!checkable) {
+            menu.add(placeholder);
+        }
         for (String item : items) {
             menu.add(item).setCheckable(checkable);
         }

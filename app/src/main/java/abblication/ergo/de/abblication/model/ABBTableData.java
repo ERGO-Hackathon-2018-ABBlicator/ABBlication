@@ -1,12 +1,11 @@
 package abblication.ergo.de.abblication.model;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -39,57 +38,57 @@ public class ABBTableData {
                 if (obj instanceof JSONObject) {
                     JSONObject place = (JSONObject) obj;
                     JSONArray tagsObj = place.getJSONArray(TAGS_KEY);
-                    List tags = getTags();
+                    Collection<String> tags = getTags();
 
                     //Geschäftseinheit vergleich mit Dropdown selection
-                    if (!add && place.getString(BUSINESS_UNIT_KEY).equals(businessKey)){
+                    if (!add && place.getString(BUSINESS_UNIT_KEY).equals(businessKey)) {
                         add = true;
                     }
 
                     //Organisationseinheit vergleich mit Dropdown selection
-                    if (!add && place.getString(ORGANIZATION_UNIT_KEY).equals(organizationUnit)){
+                    if (!add && place.getString(ORGANIZATION_UNIT_KEY).equals(organizationUnit)) {
                         add = true;
                     }
 
                     //Vergleich mit Sucheingabe
-                    if(!add){
-                        for (int i = 0; i < sInput.length; i++){
+                    if (!add) {
+                        for (int i = 0; i < sInput.length; i++) {
 
                             //Geschäftseinheit vergleich mit Sucheingabe
-                            if (place.getString(BUSINESS_UNIT_KEY).equals(sInput[i])){
+                            if (place.getString(BUSINESS_UNIT_KEY).equals(sInput[i])) {
                                 add = true;
                                 break;
                             }
 
                             //Organisationseinheit vergleich  mit Sucheingabe
-                            if (place.getString(ORGANIZATION_UNIT_KEY).equals(sInput[i])){
+                            if (place.getString(ORGANIZATION_UNIT_KEY).equals(sInput[i])) {
                                 add = true;
                                 break;
                             }
 
                             //Tags vergleich mit Sucheingabe
-                            for(int k = 0; k < tags.size(); k++){
-                                if(tags.get(k).equals(sInput[i])) {
+                            for (String tag : tags) {
+                                if (tag.equals(sInput[i])) {
                                     add = true;
-                                    k = tags.size();
                                     i = sInput.length;
+                                    break;
                                 }
                             }
                         }
                     }
 
                     //Tags vergleich mit Dropdown Auswahl der Tags
-                    for(int k = 0; k < tags.size(); k++){
-                        for(int j = 0; j < filterTags.size(); j++){
-                            if(tags.get(k).equals(sInput[j])){
+                    for (String tag : tags) {
+                        for (int j = 0; j < filterTags.size(); j++) {
+                            if (tag.equals(sInput[j])) {
                                 add = true;
-                                k = tags.size();
                                 j = filterTags.size();
+                                break;
                             }
                         }
                     }
 
-                    if(add) {
+                    if (add) {
                         ABBRow row = new ABBRow();
                         row.setBusinessUnit(place.getString(BUSINESS_UNIT_KEY));
                         row.setOrganizationUnit(place.getString(ORGANIZATION_UNIT_KEY));
@@ -98,7 +97,7 @@ public class ABBTableData {
                     }
                 }
             }
-            if(!add){
+            if (!add) {
                 result = getAllRows();
             }
         } catch (Exception e) {
@@ -129,8 +128,8 @@ public class ABBTableData {
         return result;
     }
 
-    public List<String> getBUs() {
-        List<String> result = new LinkedList<>();
+    public Set<String> getBUs() {
+        Set<String> result = new HashSet<>();
         try {
             JSONArray places = new JSONArray(bucket);
             for (int c = 0; c < places.length(); c++) {
@@ -146,8 +145,8 @@ public class ABBTableData {
         return result;
     }
 
-    public List<String> getOUs() {
-        List<String> result = new LinkedList<>();
+    public Set<String> getOUs() {
+        Set<String> result = new HashSet<>();
         try {
             JSONArray places = new JSONArray(bucket);
             for (int c = 0; c < places.length(); c++) {
@@ -163,8 +162,8 @@ public class ABBTableData {
         return result;
     }
 
-    public List<String> getTags() {
-        List<String> result = new LinkedList<>();
+    public Set<String> getTags() {
+        Set<String> result = new HashSet<>();
         try {
             JSONArray places = new JSONArray(bucket);
             for (int c = 0; c < places.length(); c++) {

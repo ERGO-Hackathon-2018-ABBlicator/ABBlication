@@ -7,4 +7,7 @@
     <string name="placeholder_tags">Tags</string>
     <string name="action_logout">Logout</string>
     <string name="action_ecampus">E-Campus</string>
+    <string name="hint_username">Benutzername</string>
+    <string name="hint_password">Passwort</string>
+    <string name="label_login">Login</string>
 </resources>

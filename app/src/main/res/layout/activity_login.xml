@@ -17,19 +17,23 @@
             android:layout_width="200dp"
             android:layout_height="40dp"
             android:layout_gravity="center_horizontal"
-            android:textColor="#F00" />
+            android:shadowColor="@color/ErgoWeis"
+            android:textColor="@color/ErgoWeis"
+            android:textColorHighlight="@color/ErgoWeis"
+            android:textColorHint="@color/ErgoWeis"
+            android:textColorLink="@color/ErgoWeis" />
 
         <EditText
             android:id="@+id/text_username"
             android:layout_width="200dp"
             android:layout_height="40dp"
             android:layout_gravity="center_horizontal"
-            android:hint="Benutzername"
-            android:shadowColor="#FFF"
-            android:textColor="#FFF"
-            android:textColorHighlight="#FFF"
-            android:textColorHint="#FFF"
-            android:textColorLink="#FFF" />
+            android:hint="@string/hint_username"
+            android:shadowColor="@color/ErgoWeis"
+            android:textColor="@color/ErgoWeis"
+            android:textColorHighlight="@color/ErgoWeis"
+            android:textColorHint="@color/ErgoWeis"
+            android:textColorLink="@color/ErgoWeis" />
 
         <EditText
             android:id="@+id/text_password"
@@ -37,13 +41,13 @@
             android:layout_height="40dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="15dp"
-            android:hint="Passwort"
+            android:hint="@string/hint_password"
             android:inputType="textPassword"
-            android:shadowColor="#FFF"
-            android:textColor="#FFF"
-            android:textColorHighlight="#FFF"
-            android:textColorHint="#FFF"
-            android:textColorLink="#FFF" />
+            android:shadowColor="@color/ErgoWeis"
+            android:textColor="@color/ErgoWeis"
+            android:textColorHighlight="@color/ErgoWeis"
+            android:textColorHint="@color/ErgoWeis"
+            android:textColorLink="@color/ErgoWeis" />
 
         <Button
             android:id="@+id/button_login"
@@ -51,6 +55,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="35dp"
-            android:text="Login" />
+            android:background="@color/ErgoWeis"
+            android:text="@string/label_login"
+            android:textColor="#000" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
