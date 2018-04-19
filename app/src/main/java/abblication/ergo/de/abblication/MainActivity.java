@@ -1,7 +1,7 @@
 package abblication.ergo.de.abblication;
 
-import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -56,6 +56,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 // FIXME call DetailsView to create new
             }
         });
+        // FIXME check permission and enable button
+        fab.setVisibility(View.INVISIBLE);
 
         searchBar = findViewById(R.id.search_bar);
 
@@ -187,6 +189,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         txt.setText(label);
         txt.setPadding(5, 14, 5, 14);
         txt.setTextSize(14);
+        txt.setTextColor(Color.BLACK);
         return txt;
     }
 
