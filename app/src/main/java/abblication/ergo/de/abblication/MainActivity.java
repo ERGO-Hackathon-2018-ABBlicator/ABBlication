@@ -197,7 +197,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void populateMenus(ABBTableData data) {
         updateMenu(menuBU.getMenu(), getString(R.string.placeholder_business_unit), data.getBUs(), false);
         updateMenu(menuOU.getMenu(), getString(R.string.placeholder_organization_unit), data.getOUs(), false);
-        updateMenu(menuTags.getMenu(), getString(R.string.placeholder_tags), data.getTags(), true);
+        updateMenu(menuTags.getMenu(), getString(R.string.placeholder_tags), data.getTagsByUsageCount(), true);
     }
 
     private void updateMenu(Menu menu, String placeholder, Collection<String> items, boolean checkable) {

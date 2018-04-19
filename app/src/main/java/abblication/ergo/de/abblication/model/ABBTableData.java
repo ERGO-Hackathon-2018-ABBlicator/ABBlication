@@ -5,7 +5,11 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -186,6 +190,70 @@ public class ABBTableData {
             e.printStackTrace();
         }
         return result;
+    }
+
+    public List<String> getTagsByUsageCount() {
+        HashMap<String, TagCount> tagToCount = new HashMap<>();
+        try {
+            JSONArray places = new JSONArray(bucket);
+            for (int c = 0; c < places.length(); c++) {
+                Object obj = places.get(c);
+                if (obj instanceof JSONObject) {
+                    JSONObject place = (JSONObject) obj;
+                    JSONArray tagsObj = place.getJSONArray(TAGS_KEY);
+                    for (int c2 = 0; c2 < tagsObj.length(); c2++) {
+                        String tag = tagsObj.getString(c2);
+                        TagCount tagCount = tagToCount.get(tag);
+                        if (tagCount == null) {
+                            tagCount = new TagCount(tag);
+                            tagToCount.put(tag, tagCount);
+                        }
+                        tagCount.count++;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        List<TagCount> tagCountList = new ArrayList<>(tagToCount.values());
+        Collections.sort(tagCountList, TagCountComparator.INSTANCE);
+        List<String> result = new LinkedList<>();
+        for (TagCount tagCount : tagCountList) {
+            result.add(tagCount.getTag());
+        }
+        return result;
+    }
+
+    private static class TagCount {
+
+        private final String tag;
+        public int count;
+
+        private TagCount(String tag) {
+            this.tag = tag;
+            this.count = 0;
+        }
+
+        public String getTag() {
+            return tag;
+        }
+    }
+
+    private static class TagCountComparator implements Comparator<TagCount> {
+
+        public static final TagCountComparator INSTANCE = new TagCountComparator();
+
+        @Override
+        public int compare(TagCount o1, TagCount o2) {
+            if (o1.count == o2.count) {
+                return 0;
+            } else if (o1.count < o2.count) {
+                return 1;
+            } else {
+                return -1;
+            }
+        }
+
     }
 
     public JSONObject getPositionByOU(String ouName) {
