@@ -52,8 +52,7 @@
                         android:layout_height="wrap_content"
                         android:paddingBottom="10dp"
                         android:paddingLeft="50dp"
-                        android:paddingTop="10dp"
-                        android:text="--station1--" />
+                        android:paddingTop="10dp" />
 
                 </TableRow>
 
@@ -65,8 +64,7 @@
                         android:layout_height="wrap_content"
                         android:paddingBottom="10dp"
                         android:paddingLeft="50dp"
-                        android:paddingTop="10dp"
-                        android:text="--station2--" />
+                        android:paddingTop="10dp" />
 
                 </TableRow>
 
@@ -78,8 +76,7 @@
                         android:layout_height="wrap_content"
                         android:paddingBottom="10dp"
                         android:paddingLeft="50dp"
-                        android:paddingTop="10dp"
-                        android:text="--station3--" />
+                        android:paddingTop="10dp"/>
 
                 </TableRow>
 
@@ -91,8 +88,7 @@
                         android:layout_height="wrap_content"
                         android:paddingBottom="10dp"
                         android:paddingLeft="50dp"
-                        android:paddingTop="10dp"
-                        android:text="--station4--" />
+                        android:paddingTop="10dp"/>
 
                 </TableRow>
 
@@ -104,8 +100,7 @@
                         android:layout_height="wrap_content"
                         android:paddingBottom="10dp"
                         android:paddingLeft="50dp"
-                        android:paddingTop="10dp"
-                        android:text="--station5--" />
+                        android:paddingTop="10dp" />
 
                 </TableRow>
 
@@ -117,8 +112,7 @@
                         android:layout_height="wrap_content"
                         android:paddingBottom="10dp"
                         android:paddingLeft="50dp"
-                        android:paddingTop="10dp"
-                        android:text="--station6--" />
+                        android:paddingTop="10dp" />
 
                 </TableRow>
 
@@ -130,8 +124,7 @@
                         android:layout_height="wrap_content"
                         android:paddingBottom="10dp"
                         android:paddingLeft="50dp"
-                        android:paddingTop="10dp"
-                        android:text="--station7--" />
+                        android:paddingTop="10dp"/>
 
                 </TableRow>
 
@@ -164,17 +157,6 @@
                     android:paddingBottom="40dp"
                     android:paddingLeft="25dp"
                     android:paddingTop="5dp"
-                    android:text="--firstname--"
-                    app:layout_constraintTop_toBottomOf="@id/name" />
-
-                <TextView
-                    android:id="@+id/name_"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="40dp"
-                    android:paddingLeft="25dp"
-                    android:paddingTop="5dp"
-                    android:text="--name--"
                     app:layout_constraintTop_toBottomOf="@id/name" />
 
             </TableRow>
@@ -210,40 +192,35 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingBottom="5dp"
-                            android:paddingLeft="25dp"
-                            android:text="--skill1--" />
+                            android:paddingLeft="25dp"/>
 
                         <TextView
                             android:id="@+id/text_skill2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingBottom="5dp"
-                            android:paddingLeft="25dp"
-                            android:text="--skill2--" />
+                            android:paddingLeft="25dp" />
 
                         <TextView
                             android:id="@+id/text_skill3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingBottom="5dp"
-                            android:paddingLeft="25dp"
-                            android:text="--skill3--" />
+                            android:paddingLeft="25dp" />
 
                         <TextView
                             android:id="@+id/text_skill4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingBottom="5dp"
-                            android:paddingLeft="25dp"
-                            android:text="--skill4--" />
+                            android:paddingLeft="25dp" />
 
                         <TextView
                             android:id="@+id/text_skill5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingBottom="5dp"
-                            android:paddingLeft="25dp"
-                            android:text="--skill5--" />
+                            android:paddingLeft="25dp"/>
 
                     </LinearLayout>
                 </RelativeLayout>
