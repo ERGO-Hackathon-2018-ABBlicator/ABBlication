@@ -1,7 +1,9 @@
 package abblication.ergo.de.abblication;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -55,22 +57,6 @@ public class ProfileActivity extends AppCompatActivity {
         // ImageView imageUser = findViewById(R.id.imageUser);
         // imageUser.setImageBitmap();
 
-        for (int i = 0; i < num_station; ++i) {
-            TextView text_station1 = findViewById(station_id[i]);
-            text_station1.setText(result_stationen.get(i));
-        }
-
-        for (int i = 0; i < num_skills; ++i) {
-            TextView text_skill1 = findViewById(skill_id[i]);
-            text_skill1.setText(result_skills.get(i));
-        }
-
-        TextView name = findViewById(R.id.name_);
-        name.setText(result_name);
-
-        TextView firstname = findViewById(R.id.firstname_);
-        name.setText(result_firstname);
-
         AWSMobileClient.getInstance().initialize(ProfileActivity.this, new AWSStartupHandler() {
             @Override
             public void onComplete(AWSStartupResult result) {
@@ -84,22 +70,42 @@ public class ProfileActivity extends AppCompatActivity {
                                 if (obj instanceof JSONObject) {
                                     JSONObject user = (JSONObject) obj;
 
-                                    result_firstname = user.getString("Vorname");
-                                    result_name = user.getString("Nachname");
+                                    final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(ProfileActivity.this);
+                                    String vNumber = sharedPref.getString("username","");
+                                    if(user.getString("ID").equals(vNumber)){
 
-                                    JSONObject place = (JSONObject) obj;
-                                    JSONArray tagsObj_skills = place.getJSONArray(SKILLS);
-                                    for (int c2 = 0; c2 < tagsObj_skills.length(); c2++) {
-                                        String skill = tagsObj_skills.getString(c2);
-                                        result_skills.add(skill);
+                                        result_firstname = user.getString("Vorname");
+                                        result_name = user.getString("Nachname");
+
+                                        TextView name = findViewById(R.id.firstname_);
+                                        name.setText(result_name + ", " + result_firstname);
+
+                                        JSONObject place = (JSONObject) obj;
+                                        JSONArray tagsObj_skills = place.getJSONArray(SKILLS);
+                                        for (int c2 = 0; c2 < tagsObj_skills.length(); c2++) {
+                                            String skill = tagsObj_skills.getString(c2);
+                                            result_skills.add(skill);
+                                        }
+
+                                        JSONArray tagsObj_stationen = place.getJSONArray(STATIONEN);
+                                        for (int c2 = 0; c2 < tagsObj_stationen.length(); c2++) {
+                                            String station = tagsObj_stationen.getString(c2);
+                                            result_stationen.add(station);
+                                        }
+
+                                        num_skills = Math.min(result_skills.size(), 5);
+                                        num_station = Math.min(result_stationen.size(),7);
+
+                                        for (int i = 0; i < num_station; ++i) {
+                                            TextView text_station1 = findViewById(station_id[i]);
+                                            text_station1.setText(result_stationen.get(i));
+                                        }
+
+                                        for (int i = 0; i < num_skills; ++i) {
+                                            TextView text_skill1 = findViewById(skill_id[i]);
+                                            text_skill1.setText(result_skills.get(i));
+                                        }
                                     }
-
-                                    JSONArray tagsObj_stationen = place.getJSONArray(STATIONEN);
-                                    for (int c2 = 0; c2 < tagsObj_stationen.length(); c2++) {
-                                        String station = tagsObj_stationen.getString(c2);
-                                        result_stationen.add(station);
-                                    }
-
                                 }
                             }
                         } catch (JSONException e) {
