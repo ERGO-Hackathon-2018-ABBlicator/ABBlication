@@ -18,7 +18,7 @@
             android:layout_gravity="center"
             android:background="@color/ErgoGrau"
             android:padding="3dp"
-            android:src="@mipmap/app_logo2" />
+            android:src="@mipmap/app_logo" />
 
         <TextView
             android:id="@+id/error_message"
