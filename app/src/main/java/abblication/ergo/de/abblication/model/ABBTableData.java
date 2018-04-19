@@ -22,6 +22,7 @@ public class ABBTableData {
     private String bucket;
     private List<ABBRow> result;
     private boolean add;
+    private boolean wasAdded;
 
     public ABBTableData(String json) {
         this.bucket = json;
@@ -29,6 +30,7 @@ public class ABBTableData {
 
     public List<ABBRow> getFilteredRows(String searchInput, String businessKey, String organizationUnit, Set<String> filterTags) {
         result = new ArrayList<>();
+        wasAdded = false;
         String[] sInput = searchInput.split(" ");
         try {
             JSONArray places = new JSONArray(bucket);
@@ -89,6 +91,7 @@ public class ABBTableData {
                     }
 
                     if (add) {
+                        wasAdded = true;
                         ABBRow row = new ABBRow();
                         row.setBusinessUnit(place.getString(BUSINESS_UNIT_KEY));
                         row.setOrganizationUnit(place.getString(ORGANIZATION_UNIT_KEY));
@@ -97,7 +100,7 @@ public class ABBTableData {
                     }
                 }
             }
-            if (!add) {
+            if (!wasAdded) {
                 result = getAllRows();
             }
         } catch (Exception e) {
