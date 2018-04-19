@@ -9,15 +9,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class Login extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     public Button login_button;
     public EditText username;
-    public EditText password ;
+    public EditText password;
     public TextView error;
 
-    private String username_db = "Jonas";
-    private String password_db = "123";
+    private String username_db = "student";
+    private String password_db = "";
     private String username_gui;
     private String password_gui;
 
@@ -25,11 +25,12 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_login);
+        Toolbar toolbar = findViewById(R.id.toolbar_login);
         setSupportActionBar(toolbar);
 
         login_button = findViewById(R.id.button_login);
         username = findViewById(R.id.text_username);
+        username.setText(username_db);
         password = findViewById(R.id.text_password);
         error = findViewById(R.id.error_message);
 
@@ -40,15 +41,14 @@ public class Login extends AppCompatActivity {
                 username_gui = String.valueOf(username.getText());
                 password_gui = String.valueOf(password.getText());
 
-                if (username_gui.equals(username_db) && password_gui.equals(password_db)){
+                if (username_gui.equals(username_db) && password_gui.equals(password_db)) {
                     Intent Intent = new Intent(view.getContext(), MainActivity.class);
                     startActivity(Intent);
-                }else{
+                } else {
                     error.setText("Try again!");
                 }
             }
         });
     }
-
 
 }
