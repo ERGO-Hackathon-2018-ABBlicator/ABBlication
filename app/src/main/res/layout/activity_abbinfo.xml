@@ -26,12 +26,16 @@
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="200dp">
 
                 <ImageView
                     android:id="@+id/image_group"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp" />
+                    android:layout_height="wrap_content"
+                    android:layout_span="2"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitStart"
+                    android:src="@drawable/mygroup" />
             </TableRow>
 
             <TableRow
