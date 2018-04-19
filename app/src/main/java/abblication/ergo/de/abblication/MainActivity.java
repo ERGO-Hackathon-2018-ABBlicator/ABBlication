@@ -54,11 +54,11 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
 
         abbTable = findViewById(R.id.abblist);
 
-        Button buttonBU = findViewById(R.id.spinner_bu);
+        Button buttonBU = findViewById(R.id.button_bu);
         menuBU = new PopupMenu(this, buttonBU);
-        Button buttonOU = findViewById(R.id.spinner_ou);
+        Button buttonOU = findViewById(R.id.button_ou);
         menuOU = new PopupMenu(this, buttonOU);
-        Button buttonTags = findViewById(R.id.spinner_tags);
+        Button buttonTags = findViewById(R.id.button_tags);
         menuTags = new PopupMenu(this, buttonTags);
         menuTags.setOnMenuItemClickListener(this);
     }
@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
     private void refreshTable() {
         abbTable.removeAllViews();
         for (ABBRow row : data.getOverviewRows()) {
+            // FIXME filter rows
             createRow(abbTable, row);
         }
     }
@@ -166,7 +167,6 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         } else {
             filterTags.remove(item.getTitle().toString());
         }
-        // FIXME update filter
         item.setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
         item.setActionView(new View(MainActivity.this));
         item.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
@@ -177,6 +177,7 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
 
             @Override
             public boolean onMenuItemActionCollapse(MenuItem item) {
+                refreshTable();
                 return false;
             }
         });
