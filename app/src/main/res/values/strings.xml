@@ -2,4 +2,7 @@
     <string name="app_name">ABBlication</string>
     <string name="action_abblist">ABB Liste</string>
     <string name="action_quiz">Azubi Quiz</string>
+    <string name="placeholder_business_unit">GB</string>
+    <string name="placeholder_organization_unit">OE</string>
+    <string name="placeholder_tags">Tags</string>
 </resources>

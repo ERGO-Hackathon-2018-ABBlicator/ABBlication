@@ -3,12 +3,13 @@ package abblication.ergo.de.abblication;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.PopupMenu;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -17,31 +18,48 @@ import com.amazonaws.mobile.client.AWSMobileClient;
 import com.amazonaws.mobile.client.AWSStartupHandler;
 import com.amazonaws.mobile.client.AWSStartupResult;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import java.util.HashSet;
+import java.util.Set;
 
-public class MainActivity extends AppCompatActivity {
+import abblication.ergo.de.abblication.model.ABBRow;
+import abblication.ergo.de.abblication.model.ABBTableData;
 
+public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
+
+    private static final String POSITIONS_BUCKET_NAME = "Stelle.json";
+
+    private final Set<String> filterTags = new HashSet<>();
     private TableLayout abbTable;
+    private ABBTableData data = new ABBTableData("[]");
+    private PopupMenu menuBU;
+    private PopupMenu menuOU;
+    private PopupMenu menuTags;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
             }
         });
 
-        abbTable = (TableLayout) findViewById(R.id.abblist);
+        abbTable = findViewById(R.id.abblist);
+
+        Button buttonBU = findViewById(R.id.spinner_bu);
+        menuBU = new PopupMenu(this, buttonBU);
+        Button buttonOU = findViewById(R.id.spinner_ou);
+        menuOU = new PopupMenu(this, buttonOU);
+        Button buttonTags = findViewById(R.id.spinner_tags);
+        menuTags = new PopupMenu(this, buttonTags);
+        menuTags.setOnMenuItemClickListener(this);
     }
 
     @Override
@@ -51,60 +69,54 @@ public class MainActivity extends AppCompatActivity {
         AWSMobileClient.getInstance().initialize(this, new AWSStartupHandler() {
             @Override
             public void onComplete(AWSStartupResult result) {
-                AWSConnector.downloadWithTransferUtility(getApplicationContext(), "Stelle.json", new AWSConnector.ResultHandler() {
+                AWSConnector.downloadWithTransferUtility(getApplicationContext(), POSITIONS_BUCKET_NAME, new AWSConnector.ResultHandler() {
                     @Override
                     public void onComplete(String json) {
-                        try {
-                            abbTable.removeAllViews();
-                            JSONArray places = new JSONArray(json);
-                            for (int c = 0; c < places.length(); c++) {
-                                Object obj = places.get(c);
-                                if (obj instanceof JSONObject) {
-                                    JSONObject place = (JSONObject) obj;
-                                    JSONArray tagsObj = place.getJSONArray("TAGS");
-                                    String tagsStr = join(", ", tagsObj);
-                                    createRow(abbTable, place.getString("BU"), place.getString("Gruppen-ID"), tagsStr);
-                                }
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                        data = new ABBTableData(json);
+                        refreshTable();
+                        populateMenus(data);
                     }
                 });
             }
         }).execute();
     }
 
-    private void createRow(TableLayout ll, String businessArea, String organizationUnit, String tags) {
-        TableRow row = new TableRow(this);
-        TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
-        row.setLayoutParams(lp);
-        row.addView(createTextCell(businessArea));
-        row.addView(createTextCell(organizationUnit));
-        row.addView(createTextCell(tags));
-        ll.addView(row);
+    private void refreshTable() {
+        abbTable.removeAllViews();
+        for (ABBRow row : data.getOverviewRows()) {
+            createRow(abbTable, row);
+        }
     }
 
-    private static String join(String delimiter, JSONArray jsonArray) throws JSONException {
-        StringBuilder sb = new StringBuilder();
-        boolean first = true;
-        for (int c = 0 ; c < jsonArray.length(); c++) {
-            String str = jsonArray.getString(c);
-            if (!first) {
-                sb.append(delimiter);
-            }
-            sb.append(str);
-            first = false;
-        }
-        return sb.toString();
+    private void createRow(TableLayout ll, ABBRow row) {
+        TableRow tableRow = new TableRow(this);
+        TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+        tableRow.setLayoutParams(lp);
+        tableRow.addView(createTextCell(row.getBusinessUnit()));
+        tableRow.addView(createTextCell(row.getOrganizationUnit()));
+        tableRow.addView(createTextCell(row.getJoinedTags()));
+        ll.addView(tableRow);
     }
 
     @NonNull
     private TextView createTextCell(String label) {
-        TextView col2 = new TextView(this);
-        col2.setText(label);
-        col2.setPadding(5, 5, 5, 5);
-        return col2;
+        TextView txt = new TextView(this);
+        txt.setText(label);
+        txt.setPadding(5, 5, 5, 5);
+        txt.setTextSize(R.dimen.text_size);
+        return txt;
+    }
+
+    private void populateMenus(ABBTableData data) {
+        for (String item : data.getBUs()) {
+            menuBU.getMenu().add(item);
+        }
+        for (String item : data.getOUs()) {
+            menuOU.getMenu().add(item);
+        }
+        for (String item : data.getTags()) {
+            menuTags.getMenu().add(item).setCheckable(true);
+        }
     }
 
     @Override
@@ -130,4 +142,42 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void onClickBU(View view) {
+        menuBU.show();
+    }
+
+    public void onClickOU(View view) {
+        menuOU.show();
+    }
+
+    public void onClickTags(View view) {
+        menuTags.show();
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        item.setChecked(!item.isChecked());
+        if (item.isChecked()) {
+            filterTags.add(item.getTitle().toString());
+        } else {
+            filterTags.remove(item.getTitle().toString());
+        }
+        // FIXME update filter
+        item.setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
+        item.setActionView(new View(MainActivity.this));
+        item.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
+            @Override
+            public boolean onMenuItemActionExpand(MenuItem item) {
+                return false;
+            }
+
+            @Override
+            public boolean onMenuItemActionCollapse(MenuItem item) {
+                return false;
+            }
+        });
+        return false;
+    }
+
 }

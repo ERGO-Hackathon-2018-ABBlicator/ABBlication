@@ -18,22 +18,33 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/search_bar">
 
-        <TableRow android:layout_width="match_parent">
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            <Spinner
+            <Button
+                android:id="@+id/spinner_bu"
                 android:layout_width="wrap_content"
                 android:layout_column="0"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:onClick="onClickBU"
+                android:text="@string/placeholder_business_unit" />
 
-            <Spinner
+            <Button
+                android:id="@+id/spinner_ou"
                 android:layout_width="wrap_content"
                 android:layout_column="1"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:onClick="onClickOU"
+                android:text="@string/placeholder_organization_unit" />
 
-            <Spinner
+            <Button
+                android:id="@+id/spinner_tags"
                 android:layout_width="wrap_content"
                 android:layout_column="2"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:onClick="onClickTags"
+                android:text="@string/placeholder_tags" />
 
         </TableRow>
 
