@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 buttonBU.setText(item.getTitle());
+                refreshTable();
                 return false;
             }
         });
@@ -74,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 buttonOU.setText(item.getTitle());
+                refreshTable();
                 return false;
             }
         });
@@ -88,6 +90,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 } else {
                     filterTags.remove(item.getTitle().toString());
                 }
+                refreshTable();
                 item.setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
                 item.setActionView(new View(MainActivity.this));
                 item.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
@@ -98,7 +101,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     @Override
                     public boolean onMenuItemActionCollapse(MenuItem item) {
-                        refreshTable();
                         return false;
                     }
                 });
