@@ -1,17 +1,17 @@
 package abblication.ergo.de.abblication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.PopupMenu;
+import android.widget.SearchView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -51,8 +51,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
+                // FIXME call DetailsView to create new
             }
         });
 
@@ -222,12 +221,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    public void onClick(View v) {
-        TableRow tableRow = (TableRow) v;
+    public void onClick(View view) {
+        TableRow tableRow = (TableRow) view;
         TextView organizationCell = (TextView) tableRow.getChildAt(1);
         String organizationName = organizationCell.getText().toString();
-        // FIXME call DetailsActivity with organizationName
-        Log.i(this.getClass().getSimpleName(), "calling details for " + organizationName);
+        Intent intent = new Intent(view.getContext(), AbbInfoActivity.class);
+        intent.putExtra("organizationUnit", organizationName);
+        startActivity(intent);
     }
 
 }

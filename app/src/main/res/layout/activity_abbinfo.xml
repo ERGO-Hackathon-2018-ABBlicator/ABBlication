@@ -20,7 +20,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="22dp"
                 android:paddingLeft="270dp"
-                app:srcCompat="@mipmap/ITERGO_1200web" />
+                app:srcCompat="@mipmap/itergo_1200web" />
         </TableRow>
 
         <TableRow
