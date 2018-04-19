@@ -20,6 +20,7 @@ import com.amazonaws.mobile.client.AWSMobileClient;
 import com.amazonaws.mobile.client.AWSStartupHandler;
 import com.amazonaws.mobile.client.AWSStartupResult;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -175,14 +176,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void populateMenus(ABBTableData data) {
-        for (String item : data.getBUs()) {
-            menuBU.getMenu().add(item);
-        }
-        for (String item : data.getOUs()) {
-            menuOU.getMenu().add(item);
-        }
-        for (String item : data.getTags()) {
-            menuTags.getMenu().add(item).setCheckable(true);
+        updateMenu(menuBU.getMenu(), getString(R.string.placeholder_business_unit), data.getBUs());
+        updateMenu(menuOU.getMenu(), getString(R.string.placeholder_organization_unit), data.getOUs());
+        updateMenu(menuTags.getMenu(), getString(R.string.placeholder_tags), data.getTags());
+    }
+
+    private void updateMenu(Menu menu, String placeholder, Collection<String> items) {
+        menu.clear();
+        menu.add(placeholder);
+        for (String item : items) {
+            menu.add(item);
         }
     }
 
