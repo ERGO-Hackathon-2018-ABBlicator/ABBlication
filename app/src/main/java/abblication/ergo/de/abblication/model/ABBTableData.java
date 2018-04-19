@@ -43,12 +43,12 @@ public class ABBTableData {
                     Collection<String> tags = getTags();
 
                     //Geschäftseinheit vergleich mit Dropdown selection
-                    if (!add && place.getString(BUSINESS_UNIT_KEY).equals(businessKey)) {
+                    if (!add && place.getString(BUSINESS_UNIT_KEY).equalsIgnoreCase(businessKey)) {
                         add = true;
                     }
 
                     //Organisationseinheit vergleich mit Dropdown selection
-                    if (!add && place.getString(ORGANIZATION_UNIT_KEY).equals(organizationUnit)) {
+                    if (!add && place.getString(ORGANIZATION_UNIT_KEY).equalsIgnoreCase(organizationUnit)) {
                         add = true;
                     }
 
@@ -57,20 +57,20 @@ public class ABBTableData {
                         for (int i = 0; i < sInput.length; i++) {
 
                             //Geschäftseinheit vergleich mit Sucheingabe
-                            if (place.getString(BUSINESS_UNIT_KEY).equals(sInput[i])) {
+                            if (place.getString(BUSINESS_UNIT_KEY).equalsIgnoreCase(sInput[i])) {
                                 add = true;
                                 break;
                             }
 
                             //Organisationseinheit vergleich  mit Sucheingabe
-                            if (place.getString(ORGANIZATION_UNIT_KEY).equals(sInput[i])) {
+                            if (place.getString(ORGANIZATION_UNIT_KEY).equalsIgnoreCase(sInput[i])) {
                                 add = true;
                                 break;
                             }
 
                             //Tags vergleich mit Sucheingabe
                             for (String tag : tags) {
-                                if (tag.equals(sInput[i])) {
+                                if (tag.equalsIgnoreCase(sInput[i])) {
                                     add = true;
                                     i = sInput.length;
                                     break;
@@ -83,7 +83,7 @@ public class ABBTableData {
                     for (String tag : filterTags) {
                         for (int j = 0; j < tagsObj.length(); j++) {
                             String tmp = tagsObj.getString(j);
-                            if (tag.equals(tagsObj.getString(j))) {
+                            if (tag.equalsIgnoreCase(tagsObj.getString(j))) {
                                 add = true;
                                 j = filterTags.size();
                                 break;
