@@ -37,6 +37,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Stationen:"
+                        android:textColor="#F13"
                         android:paddingLeft="50dp"
                         android:paddingTop="20dp"
                         android:paddingBottom="15dp"/>
@@ -150,6 +151,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="40dp"
+                android:textColor="#F13"
                 android:paddingLeft="25dp"
                 android:text="Name:" />
 
@@ -168,6 +170,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Skills:"
+                android:textColor="#F13"
                 android:paddingLeft="25dp"
                 android:paddingBottom="10dp"/>
 
@@ -225,86 +228,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="--skill5--"
-                            android:paddingLeft="25dp"
-                            android:paddingBottom="5dp"/>
-
-                        <TextView
-                            android:id="@+id/text_skill6"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="--skill6--"
-                            android:paddingLeft="25dp"
-                            android:paddingBottom="5dp"/>
-
-                        <TextView
-                            android:id="@+id/text_skill7"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="--skill7--"
-                            android:paddingLeft="25dp"
-                            android:paddingBottom="5dp"/>
-
-                        <TextView
-                            android:id="@+id/text_skill8"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="--skill8--"
-                            android:paddingLeft="25dp"
-                            android:paddingBottom="5dp"/>
-
-                        <TextView
-                            android:id="@+id/text_skill9"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="--skill9--"
-                            android:paddingLeft="25dp"
-                            android:paddingBottom="5dp"/>
-
-                        <TextView
-                            android:id="@+id/text_skill10"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="--skill10--"
-                            android:paddingLeft="25dp"
-                            android:paddingBottom="5dp"/>
-
-                        <TextView
-                            android:id="@+id/text_skill11"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="--skill11--"
-                            android:paddingLeft="25dp"
-                            android:paddingBottom="5dp"/>
-
-                        <TextView
-                            android:id="@+id/text_skill12"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="--skill12--"
-                            android:paddingLeft="25dp"
-                            android:paddingBottom="5dp"/>
-
-                        <TextView
-                            android:id="@+id/text_skill13"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="--skill13--"
-                            android:paddingLeft="25dp"
-                            android:paddingBottom="5dp"/>
-
-                        <TextView
-                            android:id="@+id/text_skill14"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="--skill14--"
-                            android:paddingLeft="25dp"
-                            android:paddingBottom="5dp"/>
-
-                        <TextView
-                            android:id="@+id/text_skill15"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="--skill15--"
                             android:paddingLeft="25dp"
                             android:paddingBottom="5dp"/>
 
