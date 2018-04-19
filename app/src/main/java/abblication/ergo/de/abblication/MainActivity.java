@@ -185,7 +185,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         TextView txt = new TextView(this);
         txt.setText(label);
         txt.setPadding(5, 14, 5, 14);
-        txt.setTextSize(16);
+        txt.setTextSize(14);
         return txt;
     }
 
