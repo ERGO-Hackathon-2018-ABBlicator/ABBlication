@@ -40,7 +40,6 @@ public class LoginActivity extends AppCompatActivity {
         String valUsername = sharedPref.getString("username", "");
         String valPassword = sharedPref.getString("password", "");
 
-
         login_button = findViewById(R.id.button_login);
         username = findViewById(R.id.text_username);
         username.setText(valUsername);

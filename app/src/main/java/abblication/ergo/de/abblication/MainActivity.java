@@ -176,16 +176,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void populateMenus(ABBTableData data) {
-        updateMenu(menuBU.getMenu(), getString(R.string.placeholder_business_unit), data.getBUs());
-        updateMenu(menuOU.getMenu(), getString(R.string.placeholder_organization_unit), data.getOUs());
-        updateMenu(menuTags.getMenu(), getString(R.string.placeholder_tags), data.getTags());
+        updateMenu(menuBU.getMenu(), getString(R.string.placeholder_business_unit), data.getBUs(), false);
+        updateMenu(menuOU.getMenu(), getString(R.string.placeholder_organization_unit), data.getOUs(), false);
+        updateMenu(menuTags.getMenu(), getString(R.string.placeholder_tags), data.getTags(), true);
     }
 
-    private void updateMenu(Menu menu, String placeholder, Collection<String> items) {
+    private void updateMenu(Menu menu, String placeholder, Collection<String> items, boolean checkable) {
         menu.clear();
         menu.add(placeholder);
         for (String item : items) {
-            menu.add(item);
+            menu.add(item).setCheckable(checkable);
         }
     }
 
