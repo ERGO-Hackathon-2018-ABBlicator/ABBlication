@@ -37,6 +37,8 @@
             android:layout_height="40dp"
             android:layout_gravity="center_horizontal"
             android:hint="@string/hint_username"
+            android:inputType="text"
+            android:maxLines="1"
             android:shadowColor="@color/ErgoWeis"
             android:textColor="@color/ErgoWeis"
             android:textColorHighlight="@color/ErgoWeis"
