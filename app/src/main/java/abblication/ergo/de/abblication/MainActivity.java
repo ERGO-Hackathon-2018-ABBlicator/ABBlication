@@ -187,6 +187,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         txt.setText(label);
         txt.setPadding(5, 14, 5, 14);
         txt.setTextSize(14);
+        txt.setTextColor(Color.BLACK);
         return txt;
     }
 
