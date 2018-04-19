@@ -1,7 +1,9 @@
 package abblication.ergo.de.abblication;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -21,7 +23,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public Button login_button;
     public EditText username;
-    public EditText password ;
+    public EditText password;
     public TextView error;
 
     private String username_db;
@@ -34,9 +36,16 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        String valUsername = sharedPref.getString("username", "");
+        String valPassword = sharedPref.getString("password", "");
+
+
         login_button = findViewById(R.id.button_login);
         username = findViewById(R.id.text_username);
+        username.setText(valUsername);
         password = findViewById(R.id.text_password);
+        password.setText(valPassword);
         error = findViewById(R.id.error_message);
 
         login_button.setOnClickListener(new View.OnClickListener() {
@@ -61,12 +70,13 @@ public class LoginActivity extends AppCompatActivity {
                                             username_db = user.getString("ID");
                                             password_db = user.getString("Passwort");
 
-                                            if (username_gui.equals(username_db) && password_gui.equals(password_db)){
+                                            if (username_gui.equals(username_db) && password_gui.equals(password_db)) {
+                                                sharedPref.edit().putString("username", username_gui).putString("password", password_gui).apply();
                                                 Intent Intent = new Intent(view.getContext(), MainActivity.class);
                                                 startActivity(Intent);
-                                            } else if(c == users.length() - 1){
+                                            } else if (c == users.length() - 1) {
                                                 error.setText("Try again!");
-                                            }else{
+                                            } else {
                                                 continue;
                                             }
                                         }
