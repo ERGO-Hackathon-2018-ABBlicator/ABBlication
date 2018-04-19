@@ -69,7 +69,8 @@ public class ABBTableData {
                             }
 
                             //Tags vergleich mit Sucheingabe
-                            for (String tag : tags) {
+                            for (int l = 0; l < tagsObj.length(); l++) {
+                                String tag = tagsObj.getString(l);
                                 if (tag.equalsIgnoreCase(sInput[i])) {
                                     add = true;
                                     i = sInput.length;
