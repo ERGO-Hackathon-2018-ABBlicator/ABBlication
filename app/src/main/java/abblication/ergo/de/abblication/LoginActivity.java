@@ -50,6 +50,7 @@ public class LoginActivity extends AppCompatActivity {
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
+                login_button.setEnabled(false);
                 error.setText("");
                 username_gui = String.valueOf(username.getText());
                 password_gui = String.valueOf(password.getText());
@@ -82,6 +83,8 @@ public class LoginActivity extends AppCompatActivity {
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
+                                } finally {
+                                    login_button.setEnabled(true);
                                 }
                             }
                         });

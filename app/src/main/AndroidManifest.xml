@@ -29,13 +29,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".AbbInfoActivity" />
         <activity android:name=".ProfileActivity" />
     </application>
