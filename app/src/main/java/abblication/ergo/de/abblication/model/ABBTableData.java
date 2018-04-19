@@ -80,9 +80,10 @@ public class ABBTableData {
                     }
 
                     //Tags vergleich mit Dropdown Auswahl der Tags
-                    for (String tag : tags) {
-                        for (int j = 0; j < filterTags.size(); j++) {
-                            if (tag.equals(sInput[j])) {
+                    for (String tag : filterTags) {
+                        for (int j = 0; j < tagsObj.length(); j++) {
+                            String tmp = tagsObj.getString(j);
+                            if (tag.equals(tagsObj.getString(j))) {
                                 add = true;
                                 j = filterTags.size();
                                 break;
