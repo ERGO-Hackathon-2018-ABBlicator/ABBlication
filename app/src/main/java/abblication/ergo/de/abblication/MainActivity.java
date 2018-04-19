@@ -233,8 +233,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         TextView organizationCell = (TextView) tableRow.getChildAt(1);
         String organizationName = organizationCell.getText().toString();
         Intent intent = new Intent(view.getContext(), AbbInfoActivity.class);
-        intent.putExtra("organizationUnit", organizationName);
-        // FIXME put more values
+        intent.putExtra("position", data.getPositionByOU(organizationName).toString());
         startActivity(intent);
     }
 

@@ -183,4 +183,22 @@ public class ABBTableData {
         return result;
     }
 
+    public JSONObject getPositionByOU(String ouName) {
+        try {
+            JSONArray places = new JSONArray(bucket);
+            for (int c = 0; c < places.length(); c++) {
+                Object obj = places.get(c);
+                if (obj instanceof JSONObject) {
+                    JSONObject place = (JSONObject) obj;
+                    if (place.getString(ORGANIZATION_UNIT_KEY).equalsIgnoreCase(ouName)) {
+                        return place;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new JSONObject();
+    }
+
 }

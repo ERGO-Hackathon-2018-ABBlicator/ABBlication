@@ -65,16 +65,16 @@
                     android:text="TextView" />
 
                 <TextView
-                    android:id="@+id/txtPraxisphase"
+                    android:id="@+id/txtPraxisarbeit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#F13"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:text="Praxisphase" />
+                    android:text="Praxisarbeit"
+                    android:textColor="#F13" />
 
                 <TextView
-                    android:id="@+id/txtPraxisphaseJN"
+                    android:id="@+id/txtPraxisarbeitJN"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#777"
