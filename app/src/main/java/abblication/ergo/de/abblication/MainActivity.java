@@ -167,8 +167,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView createTextCell(String label) {
         TextView txt = new TextView(this);
         txt.setText(label);
-        txt.setPadding(5, 10, 5, 10);
-        txt.setTextSize(20);
+        txt.setPadding(5, 14, 5, 14);
+        txt.setTextSize(16);
         return txt;
     }
 
@@ -227,6 +227,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String organizationName = organizationCell.getText().toString();
         Intent intent = new Intent(view.getContext(), AbbInfoActivity.class);
         intent.putExtra("organizationUnit", organizationName);
+        // FIXME put more values
         startActivity(intent);
     }
 
